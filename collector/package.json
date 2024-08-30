@@ -1,0 +1,12 @@
+{
+  "name": "collector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "docker-compose up -d"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

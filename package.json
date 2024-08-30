@@ -1,0 +1,23 @@
+{
+  "name": "evm-benchmark-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "sh ./scripts/run-dev.sh",
+    "start:hardhat-dev": "sh ./scripts/run-dev.sh & sh ./scripts/run-hardhat.sh",
+    "hardhat:start": "sh ./scripts/run-hardhat.sh",
+    "core:start": "cd core && pnpm run start:dev",
+    "collector:start": "cd collector && pnpm run start:dev",
+    "build": "cd core && pnpm run build",
+    "start:prod": "cd core && pnpm run start:prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "pnpm": {
+    "overrides": {
+      "@uniswap/v3-periphery": "1.4.1"
+    }
+  }
+}

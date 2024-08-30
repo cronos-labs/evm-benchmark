@@ -1,0 +1,37 @@
+{
+  "network": {
+    "evm_type": "standard",
+    "node_url": "http://localhost:9545",
+    "gas_limit": "100000",
+    "gas_price": "5000000000000",
+    "layer2": {
+      "node_url": "http://cronos-testnet-noproxy.calderachain.xyz/http",
+      "gas_limit": "0x186A0",
+      "gas_price": "0xF4240",
+      "evm_type": "optimism",
+      "benchmark": true
+    }
+  },
+  "write_to_influxdb": false,
+  "pair_benchmark": false,
+  "account": {
+    "mnemonic": "turtle unhappy immune ahead card often crew witness lens return regular reform battle find improve able motor blanket actress travel muscle lend patrol surprise",
+    "l1_holding": "10",
+    "optimism_holding": "0.000001",
+    "zksync_holding": "0.0005"
+  },
+  "tx_type": "normalTransfer",
+  "rate_control": {
+    "txs_per_batch": 50,
+    "every_n_second": 2,
+    "load_timeout": 120,
+    "type": "none",
+    "opts": {
+      "warmup_tps" : 5,
+      "time": 10,
+      "step": 5,
+      "sample_interval": 10
+    }
+  },
+  "total_tx": 500
+}

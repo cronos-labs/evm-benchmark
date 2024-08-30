@@ -1,0 +1,38 @@
+version: '3'
+services:
+  collector_influxdb:
+    image: influxdb:latest
+    container_name: collector_influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+      - "2003:2003"
+    env_file:
+      - './collector/env.influxdb'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./collector/influxdb-data:/var/lib/influxdb
+
+  collector_grafana:
+    image: grafana/grafana:latest
+    container_name: collector_grafana
+    ports:
+      - "3000:3000"
+    env_file:
+      - './collector/env.grafana'
+    user: "0"
+    links:
+      - collector_influxdb
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./collector/grafana-data:/var/lib/grafana
+      - ./collector/provisioning:/etc/grafana/provisioning
+
+  generator_monitor:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    network_mode: "host"
+    volumes:
+      - ./config.json:/usr/src/app/config.json

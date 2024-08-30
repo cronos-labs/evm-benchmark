@@ -1,0 +1,176 @@
+{
+  "type": "object",
+  "properties": {
+    "network": {
+      "type": "object",
+      "properties": {
+        "evm_type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "standard",
+                "optimism",
+                "zkSync",
+                "hermez"
+              ]
+            }
+          ]
+        },
+        "node_url": {
+          "type": "string"
+        },
+        "gas_limit": {
+          "type": "string"
+        },
+        "gas_price": {
+          "type": "string"
+        },
+        "benchmark": {
+          "type": "boolean"
+        },
+        "layer2": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "evm_type": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "optimism",
+                    "zkSync",
+                    "hermez"
+                  ]
+                }
+              ]
+            },
+            "node_url": {
+              "type": "string",
+              "required": true
+            },
+            "gas_limit": {
+              "type": "string"
+            },
+            "gas_price": {
+              "type": "string"
+            },
+            "benchmark": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "url": {
+      "type": "object",
+      "properties": {
+        "layer1": {
+          "type": "string"
+        },
+        "layer2": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "layer1",
+        "layer2"
+      ]
+    },
+    "account": {
+      "type": "object",
+      "properties": {
+        "mnemonic": {
+          "type": "string"
+        },
+        "l1_holding": {
+          "type": "string"
+        },
+        "optimism_holding": {
+          "type": "string"
+        },
+        "zksync_holding": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mnemonic",
+        "l1_holding",
+        "optimism_holding",
+        "zksync_holding"
+      ]
+    },
+    "tx_type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "normalTransfer",
+            "erc20Transfer",
+            "swap",
+            "mint",
+            "deposit"
+          ]
+        }
+      ]
+    },
+    "rate_control": {
+      "type": "object",
+      "properties": {
+        "txs_per_batch": {
+          "type": "integer"
+        },
+        "every_n_second": {
+          "type": "integer"
+        },
+        "load_timeout": {
+          "type": "integer"
+        },
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "fixed-load",
+                "maximum-rate",
+                "none"
+              ]
+            }
+          ]
+        },
+        "opts": "object",
+        "properties": {
+          "warmup_tps": {
+            "type": "integer"
+          },
+          "time": {
+            "type": "integer"
+          },
+          "step": {
+            "type": "integer"
+          },
+          "sample_interval": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": [
+        "txs_per_batch",
+        "every_n_second",
+        "load_timeout",
+        "type"
+      ]
+    },
+    "total_tx": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "network",
+    "account",
+    "tx_type",
+    "rate_control",
+    "total_tx"
+  ]
+}
